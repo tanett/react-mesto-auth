@@ -11,7 +11,7 @@ function Header(props) {
     };
     const handleOut =()=>{
         props.onOutClick();
-        setMobMenu(!mobMenu)
+        setMobMenu(false);
     }
 
     return (

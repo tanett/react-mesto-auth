@@ -17,10 +17,7 @@ const optionsApi = {
     }
 }
 
-const toolTipMessage = {
-    success: 'Вы успешно зарегистрировались!',
-    failure: 'Что-то пошло не так!Попробуйте ещё раз.'
-}
+
 
 const popupHtmlList = {
     "addPict": "<fieldset className=\"popup__inputs\">\n" +
@@ -105,5 +102,5 @@ export {
     buttonOpenPopupAdd, formAdd, formEdit,
     profileDescrSelector, profileNameSelector, popupEditUserProfileSelector,
     popupAddPictSelector, popupShowPictSelector, popupEditAvatarSelector, buttonOpenPopupEditAvatar,
-    avatarPicSelector, formEditAvatar, popupAskDeleteSelector, optionsApi, page, popupHtmlList,InfoTooltipConfig,toolTipMessage
+    avatarPicSelector, formEditAvatar, popupAskDeleteSelector, optionsApi, page, popupHtmlList,InfoTooltipConfig
 };

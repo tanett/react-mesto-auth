@@ -1,5 +1,5 @@
 import '../App.css';
-import {toolTipMessage} from '../utils/constants.js';
+
 import Header from './Header';
 import Main from "./Main";
 import Footer from "./Footer";
@@ -39,14 +39,19 @@ function App() {
         avatar: "",
         about: ""
     });
+    const toolTipMessage = {
+        success: 'Вы успешно зарегистрировались!',
+        failure: 'Что-то пошло не так!Попробуйте ещё раз.'
+    }
     const [cards, setCards] = React.useState([]);
     const [classPageLoad, setClassPageLoad] = React.useState('hidden');
     const [btnLoader, setBtnLoader] = React.useState('Сохранить');
     const [loggedIn, setLoggedIn] = React.useState('');
     const [resRegistration, setResRegistration] = React.useState('');
-    const [messageToolTip, setMessageToolTip] = React.useState('');
+    const [messageToolTip, setMessageToolTip] = React.useState(toolTipMessage);
     const [userEmail, setUserEmail] = React.useState('');
-    let history = useHistory();
+
+    const history = useHistory();
 
 
     React.useEffect(() => {
@@ -63,7 +68,7 @@ function App() {
 
     function handleRegister(email, password) {
         return auth.register(email, password).then(res => {
-            setMessageToolTip({toolTipMessage});
+            setMessageToolTip(toolTipMessage);
             if (!res || res.statusCode === 400) {
                 setResRegistration(false);
                 throw new Error('что-то не так пошло')
@@ -84,15 +89,17 @@ function App() {
     function handleLogin(login, password) {
         return auth.authorize(login, password)
             .then(data => {
+                console.log(data);
                 if (!data.token) {
                     setMessageToolTip({failure:data.message});
                     console.log(messageToolTip);
                     setResRegistration(false);
                     setIsInfoTooltipOpen(true);
-                    return;
+                    return  data;
                 }
                 setUserEmail(login);
                 setLoggedIn(true);
+                return data;
             })
 
     }
@@ -184,15 +191,15 @@ function App() {
     const handleUpdateUser = ({name, about}) => {
         setBtnLoader('Сохранение...');
         api.editUserInfo({name, about})
-            .then((res) => {
-                setCurrentUser(res)
+            .then((res) =>
+                setCurrentUser(res))
                     .then(() => {
                         closeAllPopups();
                         setBtnLoader('Сохранить')
                     })
                     .catch((err) => console.log(err));
 
-            })
+
     }
 
     const handleUpdateAvatar = ({avatar}) => {
