@@ -1,6 +1,6 @@
 # Проект 4: Место
 
-Ссылка на GitPage https://github.com/tanett/react-mesto-auth
+Ссылка на GitPage https://tanett.github.io/react-mesto-auth/
 
 ### Обзор
 * Учебный проект
