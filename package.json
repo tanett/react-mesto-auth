@@ -18,7 +18,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "sdeploy": "npm run build && scp -r ./build/* ta-nett@178.154.232.74:/home/ta-nett/mesto-frontend"
   },
   "homepage": "https://tanett.github.io/react-mesto-auth/",
   "eslintConfig": {
